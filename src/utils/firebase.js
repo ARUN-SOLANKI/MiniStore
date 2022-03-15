@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const users = firestore().collection('users');
@@ -13,13 +14,11 @@ export const addUsers = async (userInfo) => {
   };
 
 
-export const addComment = async (msg) => {
-    const res =  await commentCollection
+export const addComment = async (msg , userId, collectionRef) => {
+    const res =  await collectionRef
       .add({
-        id : Math.random(),
-        age: 30,
+        id : userId,
         msg : msg,
-        name : "arun solanki"
       })
   };
 
@@ -29,7 +28,8 @@ export const firebaseLogin = async (email , password , navigation) => {
     const response = await auth().signInWithEmailAndPassword(email, password)
     try{
         if(response){
-        console.log('User account created & signed in!' ,)
+        console.log('User account created & signed in!' , response.user._user.uid)
+        storage(response.user._user.uid)
         navigation.navigate("Home" , response.user._user)
         }
     }catch{
@@ -57,3 +57,31 @@ export const getUsers = async () => {
   const userList = await users.get();
   return userList._docs;
 }
+
+
+export const storage = async (token)=>{
+  try { 
+    await AsyncStorage.setItem('token', String(token));
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+export const getChat = async (ChatRef) => {
+  const ChatList = await ChatRef.get();
+  console.log(ChatList, "chatlist")
+  // return userList._docs;
+}
+
+
+export const getUsertoken = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (token !== null) {
+          return token;
+      }
+      }catch {
+      console.log(error)
+      }
+    }

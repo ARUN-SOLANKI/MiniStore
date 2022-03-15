@@ -1,8 +1,10 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import auth from '@react-native-firebase/auth';
 import { addUsers } from '../utils/firebase';
 import { firebaseLogin } from '../utils/firebase';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const LoginPage = ({navigation}) => {
   const [loginDetails, setLoginDetails] = useState({
@@ -27,6 +29,21 @@ const LoginPage = ({navigation}) => {
       })
     }
   }
+
+
+  useEffect(()=>{
+  const getUserName = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (token !== null) {
+          navigation.navigate("Home")
+      }
+      }catch {
+      console.log(error)
+      }
+  }
+  getUserName();
+})
 
   return (
     <View style={styles.container} >
