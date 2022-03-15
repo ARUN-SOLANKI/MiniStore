@@ -1,13 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View ,TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 import { addComment } from '../utils/firebase';
 
-const ChatScreen = () => {
+const ChatScreen = ({route, navigation}, props) => {
   const [msg, setMsg] = useState('');
   const handleComments = () => {
     addComment(msg);
   };
 
+  console.log(route, 'props--------------------')
   return (
     <View>
       <View
@@ -19,7 +20,7 @@ const ChatScreen = () => {
         }}>
         <TextInput
           style={styles.TextInput}
-          placeholder="comment here"
+          placeholder="type your message here"
           onChangeText={text => setMsg(text)}
         />
         <TouchableOpacity style={styles.btn} onPress={handleComments}>

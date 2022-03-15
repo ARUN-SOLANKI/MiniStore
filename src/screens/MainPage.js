@@ -19,12 +19,12 @@ const MainPage = ({route, navigation}, props) => {
     });
   }, []);
   console.log(data, '------------------');
-  
+
   return (
     <View>
       {data?.map(item => {
         return (
-          <UserComponent item={item} />
+          <UserComponent item={item} navigation={navigation} />
         );
       })}
     </View>
