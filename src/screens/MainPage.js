@@ -10,6 +10,7 @@ import {
 import {getUsers} from '../utils/firebase';
 import UserComponent from '../components/UserComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const MainPage = ({route, navigation}, props) => {
@@ -29,6 +30,8 @@ const MainPage = ({route, navigation}, props) => {
 
   return (
     <View>
+      <Button title='logout' onPress={clearLocal} />
+      <ScrollView style={{marginBottom:30}}>
       {data?.map(item => {
         return (
           <View key={item._data.email}>
@@ -36,7 +39,7 @@ const MainPage = ({route, navigation}, props) => {
           </View>
         );
       })}
-      <Button title='logout' onPress={clearLocal} />
+      </ScrollView>
     </View>
   );
 };

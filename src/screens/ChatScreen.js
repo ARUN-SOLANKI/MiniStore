@@ -71,7 +71,7 @@ const ChatScreen = ({route, navigation}, props) => {
           <Text style={styles.textBtn}>Send</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView>
+      <ScrollView style={{marginBottom:60}}>
       {data.map((item, i) => {
         return (
           <View style={{height:60}} key={i}>
