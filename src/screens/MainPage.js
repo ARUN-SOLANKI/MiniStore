@@ -20,7 +20,6 @@ const MainPage = ({route, navigation}, props) => {
       setData(res);
     });
   }, []);
-  console.log(data, '------------------');
 
   const clearLocal = () =>{
     AsyncStorage.removeItem('token');

@@ -21,7 +21,6 @@ const LoginPage = ({navigation}) => {
 
   const handleLogin = () => {
     if (loginDetails.email && loginDetails.password) {
-      console.log(loginDetails.email, loginDetails.password);
       firebaseLogin(loginDetails.email , loginDetails.password , navigation)
       setLoginDetails({
         email: "",

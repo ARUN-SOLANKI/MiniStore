@@ -3,7 +3,7 @@ import React from 'react'
 
 const UserComponent = ({navigation , item}) => {
 
-    console.log(item , "-----------------------------")
+    
   return (
     <View>
        <TouchableOpacity style={styles.userBtn} onPress={() => navigation.navigate('Chats' , item)}>

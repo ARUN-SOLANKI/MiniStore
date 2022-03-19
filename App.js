@@ -1,4 +1,3 @@
-import 'react-native-gesture-handler';
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Routes from './src/navigations/Routes'
@@ -16,3 +15,8 @@ const App = () => {
 export default App
 
 const styles = StyleSheet.create({})
+
+
+
+// "name": "MiniStoreApp",
+  // "displayName": "Warta-Lap"
